@@ -7,8 +7,8 @@ public class Driver {
 	public static void main(String[] args) {
 
 		Scanner sc = new Scanner(System.in);
-		int n=0,id;
-		String name,phoneNumber,email;
+		int n = 0, id, k = 0;
+		String name, phoneNumber, email;
 		ContactManager cm = new ContactManager();
 
 		while (true) {
@@ -25,117 +25,102 @@ public class Driver {
 			switch (n) {
 			case 1: {
 				System.out.println("Enter id,name,phonenumber,email");
-				try
-				{
-					id=sc.nextInt();
-					name=sc.next();
-					phoneNumber=sc.next();
-					email=sc.next();
-					
-				}
-				catch(Exception e)
-				{
+				try {
+					id = sc.nextInt();
+					name = sc.next();
+					phoneNumber = sc.next();
+					email = sc.next();
+
+				} catch (Exception e) {
 					System.out.println("Enter details Correctly");
-					try
-					{
-					id=sc.nextInt();
-					}
-					catch(Exception exp)
-					{
+					try {
+						id = sc.nextInt();
+					} catch (Exception exp) {
 						sc.next();
 						System.out.println("Enter a proper integer");
-						id=sc.nextInt();
+						id = sc.nextInt();
 					}
-					name=sc.next();
-					phoneNumber=sc.next();
-					email=sc.next();
+					name = sc.next();
+					phoneNumber = sc.next();
+					email = sc.next();
 				}
-				try
-				{
+				try {
 					long na = Long.parseLong(name);
+				} catch (Exception e) {
+					k = 1;
+
 				}
-				catch(Exception e)
-				{
-					
+				if (k == 0) {
+					System.out.println("Enter a proper name, only digits not allowed");
+					name = sc.next();
 				}
-				System.out.println("Enter a proper name, only digits not allowed");
-				name=sc.next();
-				try
-				{
+				try {
 					long l = Long.parseLong(phoneNumber);
-				}
-				catch(Exception e)
-				{
+				} catch (Exception e) {
 					System.out.println("Only digits allowed in phone number");
-					phoneNumber="12";
+					phoneNumber = "12";
 				}
-				
-				while(phoneNumber.length()!=10)
-				{
+
+				while (phoneNumber.length() != 10) {
 					System.out.println("Enter a 10 digit phone number");
-					phoneNumber=sc.next();
-					try
-					{
+					phoneNumber = sc.next();
+					try {
 						long l = Long.parseLong(phoneNumber);
-					}
-					catch(Exception e)
-					{
+					} catch (Exception e) {
 						System.out.println("Only digits allowed in phone number");
-						phoneNumber="12";
+						phoneNumber = "12";
 						continue;
 					}
 				}
-				
-				while(!email.contains("@"))
-				{
+
+				while (!email.contains("@")) {
 					System.out.println("Enter a proper email id");
-					email=sc.next();
+					email = sc.next();
 				}
-				
-				Contact c = new Contact(id,phoneNumber,name,email);
+
+				Contact c = new Contact(id, phoneNumber, name, email);
 				cm.addContact(c);
 				break;
 			}
-			
-			case 2:
-			{
+
+			case 2: {
 				System.out.println("Enter name");
-				name=sc.next();
+				name = sc.next();
 				cm.searchByName(name);
 				break;
 			}
-			case 3:
-			{
+			case 3: {
 				System.out.println("Enter number");
-				phoneNumber=sc.next();
+				phoneNumber = sc.next();
 				cm.searchByNumber(phoneNumber);
 				break;
 			}
-			case 4:
-			{
+			case 4: {
 				System.out.println("Enter id");
 				try {
-				id =sc.nextInt();
-				}
-				catch(Exception e)
-				{
+					id = sc.nextInt();
+				} catch (Exception e) {
 					sc.next();
 					System.out.println("Enter an integer");
-					id=sc.nextInt();
-					
+					id = sc.nextInt();
+
 				}
 				cm.deleteById(id);
 				break;
 			}
-			case 5:
-			{
+			case 5: {
 				cm.updateContact();
 				break;
 			}
 			case 6:
+				System.out.println("Thankyou for using.");
 				System.exit(0);
+				break;
 
+			default:
+				System.out.println("Enter correct number");
 			}
+
 		}
 	}
 
