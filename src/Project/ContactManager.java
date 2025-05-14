@@ -74,6 +74,7 @@ public class ContactManager {
 		}
 		catch(Exception e)
 		{
+			sc.next();
 			System.out.println("Enter an integer value");
 			n=sc.nextInt();
 		}
