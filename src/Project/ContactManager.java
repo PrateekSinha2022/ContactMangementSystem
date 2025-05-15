@@ -17,7 +17,28 @@ public class ContactManager {
 			}
 		}
 			contacts.add(contact);
+			System.out.println("Contact added successfully");
 		
+	}
+	
+	public void listContact()
+	{
+		for(Contact c:contacts)
+		{
+			System.out.println(c);
+		}
+	}
+	
+	public boolean isIdPresent(int id)
+	{
+		for(Contact c:contacts)
+		{
+			if(c.getId()==id)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	public void searchByName(String name)
